@@ -15,10 +15,16 @@ def difficulty_choice():
     return difficulty
 
 def play_exposition(game):
+    """
+    Play exposition text
+    """
     print(game["exposition_text"]["exposition"])
     game["exposition_text"]["was_played"] = "True"
 
 def spend_time(game, minutes):
+    """
+    spend in-game time
+    """
     if int(game["game"]["time"]["minutes"])+(minutes%60) >= 60:
         minutes += 60
     game["game"]["time"]["minutes"] = str((int(game["game"]["time"]["minutes"])+(minutes%60)) % 60)
@@ -26,6 +32,9 @@ def spend_time(game, minutes):
     return game
 
 def action_menu(game):
+    """
+    Default menu of action depending on location
+    """
     try:
         options = []
 
@@ -80,10 +89,16 @@ def action_menu(game):
         print(e)
 
 def dice(game):
+    """
+    Make a decision
+    """
     game = game
     response = randint(1, 6)
     return response
 
 def game_over(game):
+    """
+    End ze game
+    """
     print("You died")
     exit()

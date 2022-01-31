@@ -3,6 +3,9 @@ import utils.player_functions as player_functions
 import utils.items_functions as items_functions
 
 def start_dialogue(game, character):
+    """
+    Begin a dialogue with character
+    """
     try:
         while True:
             if city := game["player"]["location"]["detail"].split(".")[0] not in game["characters"][character]["dialogue"]:
@@ -35,6 +38,9 @@ def start_dialogue(game, character):
         print(e)
 
 def continue_dialogue(game, character, following_dialogue):
+    """
+    Continue the dialogue with character
+    """
     try:
         if city := game["player"]["location"]["detail"].split(".")[0] not in game["characters"][character]["dialogue"]:
             dialogue = game["characters"][character]["dialogue"]["general"]
@@ -83,6 +89,9 @@ def continue_dialogue(game, character, following_dialogue):
         print(e)
 
 def trade_menu(game, character):
+    """
+    Choose if you want to buy or sell
+    """
     try:
         options = []
         options.append("I want to buy -buy")
@@ -109,6 +118,9 @@ def trade_menu(game, character):
         print(e)
 
 def choose_category():
+    """
+    Choose a category to visit
+    """
     try:
         options = []
         choices = {}
@@ -134,6 +146,9 @@ def choose_category():
         print(e)
 
 def give_item(game, character, category, item):
+    """
+    Give item to character
+    """
     try:
         print("Sold : "+game["items_available"][category][item]["name"])
         print(game["characters"][character]["inventory"][game["player"]["location"]["detail"].split(".")[0]][category])
@@ -152,6 +167,9 @@ def give_item(game, character, category, item):
         print(e)
 
 def look_inventory(game, category, character, inventory_to_check = "You"):
+    """
+    Look in inventory of character or player
+    """
     if inventory_to_check == "You":
         inventory = game["player"]["inventory"][category]["owned"]
         action = "sell"
@@ -202,6 +220,9 @@ def look_inventory(game, category, character, inventory_to_check = "You"):
 
 
 def trade_buy(game, character):
+    """
+    Buy action
+    """
     try:
         while True:
             category = choose_category()
@@ -212,6 +233,9 @@ def trade_buy(game, character):
         print(e)
 
 def trade_sell(game, character):
+    """
+    sell action
+    """
     try:
         while True:
             category = choose_category()

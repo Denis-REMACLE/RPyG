@@ -2,6 +2,9 @@ import utils.player_functions as player_functions
 import utils.items_functions as items_functions
 
 def enter_dungeon(game, dungeon_name):
+    """
+    Enter a dungeon and fight every single enemy
+    """
     try:
         dungeon = game["map"]["dungeons"][dungeon_name]
         print(dungeon["description"])

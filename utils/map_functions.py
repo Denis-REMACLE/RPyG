@@ -22,6 +22,9 @@ def leave(game):
     return game
 
 def pray(game, cult):
+    """
+    Pray in order to gain hp and exp
+    """
     try:
         if game["map"]["cult"][cult]["uses"] != 0:
             game["map"]["cult"][cult]["uses"]-=1

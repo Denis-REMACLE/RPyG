@@ -2,6 +2,9 @@ import utils.game_functions as game_functions
 import utils.player_functions as player_functions
 
 def craft_menu(game):
+    """
+    List all recipes player can make
+    """
     try:
         while True:
             recipes = game["recipes"]
@@ -41,6 +44,9 @@ def craft_menu(game):
         print(e)
 
 def craft_item(game, recipe):
+    """
+    Apply recipe
+    """
     try:
         category = recipe.split(".")[0]
         item = recipe.split(".")[1]
@@ -59,6 +65,9 @@ def craft_item(game, recipe):
     return game
 
 def get_item(game, category, item):
+    """
+    Give item to player
+    """
     print("Gained : "+game["items_available"][category][item]["name"])
     if item not in game["player"]["inventory"][category]["owned"]:
         game["player"]["inventory"][category]["owned"][item] = 1
@@ -68,6 +77,9 @@ def get_item(game, category, item):
     return game
 
 def check_inventory(game):
+    """
+    Inventory category menu
+    """
     while True:
         options = []
         choices = {}
@@ -96,6 +108,9 @@ def check_inventory(game):
     return game
 
 def use_item(game, category, item):
+    """
+    Use item and apply it's effect
+    """
     try:
         game["player"]["inventory"][category]["owned"][item]-=1
         effects = game["items_available"][category][item]["effect"].split(".")
@@ -117,6 +132,9 @@ def use_item(game, category, item):
     return game
 
 def equip_item(game, category, item):
+    """
+    Equip item if equipable
+    """
     try:
         game["player"]["inventory"][category]["equipped"] = item
         print(game["items_available"][category][item]["name"]+" was equipped")
@@ -125,6 +143,9 @@ def equip_item(game, category, item):
     return game
 
 def look(game, category):
+    """
+    Look in inventory for object in category
+    """
     items_list = game["player"]["inventory"][category]["owned"]
     equip = 0
     if len(game["player"]["inventory"][category]) == 2:

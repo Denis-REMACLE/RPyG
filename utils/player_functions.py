@@ -45,6 +45,9 @@ def player_init(player):
     return player
 
 def gain_exp(game, exp):
+    """
+    Give exp to player
+    """
     try:
         print("Gained : "+str(exp)+" exp")
         if game["player"]["exp"] + exp >= 100:
@@ -60,6 +63,9 @@ def gain_exp(game, exp):
     return game
 
 def gain_hp(game, hp):
+    """
+    Give hp to player
+    """
     try:
         print("Gained : "+str(hp)+" hp")
         if game["player"]["hp"] + hp >= game["player"]["hp_max"]:
@@ -73,6 +79,9 @@ def gain_hp(game, hp):
     return game
 
 def lose_hp(game, hp):
+    """
+    Remove hp from player
+    """
     try:
         print("Lost : "+str(hp)+" hp")
         if game["player"]["hp"] - hp <= 0:
@@ -90,6 +99,9 @@ def lose_hp(game, hp):
     return game
 
 def gain_lvl(game):
+    """
+    Give lvl to player and increase hp max
+    """
     print("Gained : 1 level")
     game["player"]["lvl"]+=1
     game["player"]["hp_max"]+=25
@@ -97,12 +109,18 @@ def gain_lvl(game):
     return game
 
 def sleep(game, minutes):
+    """
+    Player sleep
+    """
     game = gain_hp(game, 1000000)
     game = gain_exp(game, 15)
     game = game_functions.spend_time(game, minutes)
     return game
 
 def check_money(game, coins):
+    """
+    Check if player has the money to pay
+    """
     if game["player"]["inventory"]["money"] >= coins:
         return True
     else:
@@ -110,18 +128,27 @@ def check_money(game, coins):
         return False
 
 def gain_money(game, money):
+    """
+    Give money to player
+    """
     print("Gained : "+str(money)+" coins")
     game["player"]["inventory"]["money"]+= money
 
     return game
 
 def pay(game, character, coins):
+    """
+    Pay money to merchant
+    """
     game["player"]["inventory"]["money"] -= coins
     city = game["player"]["location"]["detail"].split(".")[0]
     game["characters"][character]["inventory"][city]["money"] += coins
     return game
 
 def fight(game, enemy):
+    """
+    Engage fight with enemy
+    """
     try:
 
         enemy_info = deepcopy(game["enemies"][enemy])
@@ -154,6 +181,9 @@ def fight(game, enemy):
         print(e)
 
 def combat_menu(game):
+    """
+    Choose an action while fighting
+    """
     weapon_of_player = game["player"]["inventory"]["weapons"]["equipped"]
 
     options = []
